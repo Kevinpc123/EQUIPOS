@@ -1,26 +1,23 @@
 package paquete_1;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name="Equipo")
 public class Equipo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable=false)
     private String nombre;
+    @Column(nullable=false)
     private String estadio;
+    @OneToMany(mappedBy="equipo",cascade= CascadeType.ALL, orphanRemoval=true)
+    private List<Jugador> jugadores;
 
-    public Equipo() {}
+    //getter y setters
 
-    public Equipo(String nombre, String estadio) {
-        this.nombre = nombre;
-        this.estadio = estadio;
-    }
-
-    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -43,5 +40,24 @@ public class Equipo {
 
     public void setEstadio(String estadio) {
         this.estadio = estadio;
+    }
+
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+    //tostring
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Equipo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", estadio='" + estadio + '\'' +
+                ", jugadores=" + jugadores +
+                '}';
     }
 }

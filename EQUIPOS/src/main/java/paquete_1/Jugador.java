@@ -5,21 +5,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 @Entity
+@Table(name="Jugador")
 public class Jugador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(nullable=false)
     private String nombre;
+    @Column(nullable=false)
     private float estatura;
+    @Column(nullable=false)
     private float peso;
 
     @ManyToOne
-    @JoinColumn(name = "idEquipo")
+    @JoinColumn(name = "idEquipo",nullable=false)
     private Equipo equipo;
 
     // Getters y Setters
+
     public int getId() {
         return id;
     }
@@ -58,5 +62,17 @@ public class Jugador {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+    //tostring
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Jugador{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", estatura=" + estatura +
+                ", peso=" + peso +
+                ", equipo=" + equipo +
+                '}';
     }
 }

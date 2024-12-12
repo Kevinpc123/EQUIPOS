@@ -2,10 +2,9 @@ package paquete_1;
 import java.util.List;
 
 public interface DAO<T> {
-    void insertar(T entity);
-    void actualizar(T entity);
-    void eliminar(int id);
-    T obtenerPorId(int id);
-    List<T> obtenerTodos();
-    List<T> ordenarPorNombre();
+   List<T>obtenerTodos();
+   T obtenerPorId(int id);
+   void insertar(T entidad);
+   void actualizar(T entidad);
+   void eliminar(int id);
 }
